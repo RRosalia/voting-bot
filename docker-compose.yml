@@ -133,6 +133,13 @@ services:
             NGROK_HOSTNAME: voting-bot.eu.ngrok.io
             NGROK_PORT: 'app:80'
             NGROK_REGION: eu
+    ngrok-selenium:
+        image: wernight/ngrok
+        environment:
+            NGROK_AUTH: 1omfEunS4mseSPMBeHdokXoHlaC_5DCxkxywbHhNV95rrFcvt
+            NGROK_SUBDOMAIN: voting-bot-dashboard
+            NGROK_PORT: 'selenium-hub:4444'
+            NGROK_REGION: eu
 volumes:
     mysql:
         driver: local
