@@ -14,6 +14,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Facebook\WebDriver\Remote\WebDriverCapabilityType;
 use Illuminate\Support\Facades\Cache;
@@ -114,13 +115,20 @@ class VoteTop100Token implements ShouldQueue
 
             $voteButton->click();
 
+            // click and wait
+            sleep(2);
+
+            $randomUuid = (string) Str::uuid();
+            $path = 'app/screenshots/'.$randomUuid.'.png';
+
+            // create a screenshot of the vote
+            $driver->takeScreenshot(storage_path($path));
+
             Vote::query()->create([
                 'ip' => $ip,
                 'user_agent' => $userAgent,
+                'image' => $path
             ]);
-
-            // click and wait
-            sleep(2);
         }
 
         Log::debug('Closing the browser');

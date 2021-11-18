@@ -139,6 +139,8 @@ services:
             NGROK_AUTH: 1omfEunS4mseSPMBeHdokXoHlaC_5DCxkxywbHhNV95rrFcvt
             NGROK_SUBDOMAIN: voting-bot-dashboard
             NGROK_PORT: 'selenium-hub:4444'
+            NGROK_USERNAME: admin
+            NGROK_PASSWORD: 6tF8BuhMwtWSm7nW
             NGROK_REGION: eu
 volumes:
     mysql:
