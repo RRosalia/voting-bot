@@ -23,6 +23,8 @@ RUN composer install \
 ##
 FROM serviceright/serviceright-docker-laravel-php80:latest
 
+RUN apk add php-zip
+
 COPY . /usr/share/nginx/html
 COPY --from=vendor /app/vendor/ /usr/share/nginx/html/vendor/
 
