@@ -37,4 +37,8 @@ COPY docker/config/php.ini /usr/local/etc/php/php.ini
 # Create the log files
 RUN chmod -R 777 /usr/share/nginx/html/storage
 
+## THE LIFE SAVER
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
 CMD ["/etc/bootstrap-application"]
