@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
     app:
         build:
@@ -6,7 +6,7 @@ services:
                 PACKAGIST_AUTH_TOKEN: d86ad04eacf7ad7fd64d7f7887bdba6c5df0a8f61c68ab09b772eb394e98
         environment:
             APP_DEBUG: 1
-            APP_NAME: "Voter"
+            APP_NAME: Voter
             APP_ENV: production
             DB_HOST: database
             DB_DATABASE: homestead
@@ -18,22 +18,22 @@ services:
             CACHE_DRIVER: redis
             QUEUE_CONNECTION: redis
             REDIS_HOST: redis
-            WAIT_HOSTS: database:3306
-            SELENIUM_HOST: "http://selenium-hub:4444"
+            WAIT_HOSTS: 'database:3306'
+            SELENIUM_HOST: 'http://selenium-hub:4444'
         working_dir: /usr/share/nginx/html
         volumes:
-            - ./:/usr/share/nginx/html:cached
-            - /dev/null:/bootstrap/cache
-            - /dev/null:/vendor
-            - /dev/null:/node_modules
-            - /dev/null:/public/dist
+            - './:/usr/share/nginx/html:cached'
+            - '/dev/null:/bootstrap/cache'
+            - '/dev/null:/vendor'
+            - '/dev/null:/node_modules'
+            - '/dev/null:/public/dist'
     scheduler:
         build:
             args:
                 PACKAGIST_AUTH_TOKEN: d86ad04eacf7ad7fd64d7f7887bdba6c5df0a8f61c68ab09b772eb394e98
         environment:
             APP_DEBUG: 1
-            APP_NAME: "Voter"
+            APP_NAME: Voter
             CONTAINER_ROLE: scheduler
             APP_ENV: production
             DB_HOST: database
@@ -46,22 +46,22 @@ services:
             CACHE_DRIVER: redis
             QUEUE_CONNECTION: redis
             REDIS_HOST: redis
-            WAIT_HOSTS: database:3306
-            SELENIUM_HOST: "http://selenium-hub:4444"
+            WAIT_HOSTS: 'database:3306'
+            SELENIUM_HOST: 'http://selenium-hub:4444'
         working_dir: /usr/share/nginx/html
         volumes:
-            - ./:/usr/share/nginx/html:cached
-            - /dev/null:/bootstrap/cache
-            - /dev/null:/vendor
-            - /dev/null:/node_modules
-            - /dev/null:/public/dist
+            - './:/usr/share/nginx/html:cached'
+            - '/dev/null:/bootstrap/cache'
+            - '/dev/null:/vendor'
+            - '/dev/null:/node_modules'
+            - '/dev/null:/public/dist'
     queue:
         build:
             args:
                 PACKAGIST_AUTH_TOKEN: d86ad04eacf7ad7fd64d7f7887bdba6c5df0a8f61c68ab09b772eb394e98
         environment:
             APP_DEBUG: 1
-            APP_NAME: "Voter"
+            APP_NAME: Voter
             CONTAINER_ROLE: queue
             APP_ENV: production
             DB_HOST: database
@@ -74,17 +74,17 @@ services:
             CACHE_DRIVER: redis
             QUEUE_CONNECTION: redis
             REDIS_HOST: redis
-            WAIT_HOSTS: database:3306
-            SELENIUM_HOST: "http://selenium-hub:4444"
+            WAIT_HOSTS: 'database:3306'
+            SELENIUM_HOST: 'http://selenium-hub:4444'
         working_dir: /usr/share/nginx/html
         volumes:
-            - ./:/usr/share/nginx/html:cached
-            - /dev/null:/bootstrap/cache
-            - /dev/null:/vendor
-            - /dev/null:/node_modules
-            - /dev/null:/public/dist
+            - './:/usr/share/nginx/html:cached'
+            - '/dev/null:/bootstrap/cache'
+            - '/dev/null:/vendor'
+            - '/dev/null:/node_modules'
+            - '/dev/null:/public/dist'
     chrome:
-        image: selenium/node-chrome:4.1.0-prerelease-20211105
+        image: 'selenium/node-chrome:4.1.0-prerelease-20211105'
         shm_size: 2gb
         depends_on:
             - selenium-hub
@@ -94,33 +94,33 @@ services:
             - SE_EVENT_BUS_PUBLISH_PORT=4442
             - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
     selenium-hub:
-        image: selenium/hub:4.1.0-prerelease-20211105
+        image: 'selenium/hub:4.1.0-prerelease-20211105'
         container_name: selenium-hub
         ports:
-            - "4442:4442"
-            - "4443:4443"
-            - "4444:4444"
+            - '4442:4442'
+            - '4443:4443'
+            - '4444:4444'
     database:
-        image: mysql:8.0.26
-        command: --default-authentication-plugin=mysql_native_password
+        image: 'mysql:8.0.26'
+        command: '--default-authentication-plugin=mysql_native_password'
         ports:
-            - "13306:3306"
+            - '13306:3306'
         environment:
             MYSQL_DATABASE: homestead
             MYSQL_ROOT_PASSWORD: root
             MYSQL_USER: homestead
             MYSQL_PASSWORD: secret
     redis:
-        image: "redis:alpine"
+        image: 'redis:alpine'
     ngrok:
         image: wernight/ngrok
         environment:
-            NGROK_AUTH: "1omfEunS4mseSPMBeHdokXoHlaC_5DCxkxywbHhNV95rrFcvt"
-            NGROK_USERNAME: "admin"
-            NGROK_PASSWORD: "6tF8BuhMwtWSm7nW"
-            NGROK_HOSTNAME: "voting-bot.eu.ngrok.io"
-            NGROK_PORT: "app:80"
-            NGROK_REGION: "eu"
+            NGROK_AUTH: 1omfEunS4mseSPMBeHdokXoHlaC_5DCxkxywbHhNV95rrFcvt
+            NGROK_USERNAME: admin
+            NGROK_PASSWORD: 6tF8BuhMwtWSm7nW
+            NGROK_HOSTNAME: voting-bot.eu.ngrok.io
+            NGROK_PORT: 'app:80'
+            NGROK_REGION: eu
 volumes:
     mysql:
-        driver: "local"
+        driver: local
