@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/votes', function () {
-    return \App\Domain\Models\Vote::query()->latest()->simplePaginate(100);
+    $paginator = \App\Domain\Models\Vote::query()->latest()->paginate(100);
+
+    $items = collect($paginator->items())->map(function(\App\Domain\Models\Vote $vote){
+        $vote->image = \Illuminate\Support\Facades\Storage::path($vote->image);
+        return $vote;
+    });
+
+    return [
+        'data' => $items,
+        'total_votes_casted' => $paginator->total(),
+    ];
 });
