@@ -22,7 +22,7 @@ Route::get('/votes', function () {
     });
 
     return [
-        'data' => $items,
         'total_votes_casted' => $paginator->total(),
+        'data' => $items,
     ];
 });
