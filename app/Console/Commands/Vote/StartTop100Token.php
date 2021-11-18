@@ -43,7 +43,7 @@ class StartTop100Token extends Command
      */
     public function handle()
     {
-        $votesPerHour = rand(20, 80);
+        $votesPerHour = rand(60, 150);
 
         Log::info('Votes per hour', [
             'votes' => $votesPerHour,
