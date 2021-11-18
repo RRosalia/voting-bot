@@ -17,7 +17,7 @@ Route::get('/votes', function () {
     $paginator = \App\Domain\Models\Vote::query()->latest()->paginate(100);
 
     $items = collect($paginator->items())->map(function(\App\Domain\Models\Vote $vote){
-        $vote->image = \Illuminate\Support\Facades\Storage::path($vote->image);
+        $vote->image = asset('storage/screenshots/'.$vote->image.'.png');
         return $vote;
     });
 

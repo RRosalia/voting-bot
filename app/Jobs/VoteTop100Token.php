@@ -129,7 +129,7 @@ class VoteTop100Token implements ShouldQueue
             Vote::query()->create([
                 'ip' => $ip,
                 'user_agent' => $userAgent,
-                'image' => $path
+                'image' => $randomUuid
             ]);
         }
 
