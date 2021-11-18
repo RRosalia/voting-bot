@@ -12,6 +12,7 @@ if test -f "$FILE"; then
 fi
 
 chmod -R 777 /usr/share/nginx/html/storage/logs
+chmod -R 777 /usr/share/nginx/html/storage
 rm -f /etc/supervisor/conf.d/queue.conf
 
 # start the application if we are an application
