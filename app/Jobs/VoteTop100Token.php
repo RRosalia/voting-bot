@@ -50,7 +50,9 @@ class VoteTop100Token implements ShouldQueue
             'url' => $this->url
         ]);
 
-        $userAgent = UserAgent::random();
+        $userAgent = UserAgent::random([
+            'device_type' => ['Tablet', 'Desktop', 'Mobile']
+        ]);
 
         $desiredCapabilities = DesiredCapabilities::chrome();
         $options = new ChromeOptions();
