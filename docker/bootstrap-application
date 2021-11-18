@@ -17,7 +17,7 @@ rm -f /etc/supervisor/conf.d/queue.conf
 
 # start the application if we are an application
 if [ "$role" = "app" ]; then
-    php /usr/share/nginx/html/artisan migrate -f
+    php /usr/share/nginx/html/artisan migrate --force
 
     echo "Starting the application..."
     exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
