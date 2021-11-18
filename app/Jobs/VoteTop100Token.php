@@ -88,7 +88,7 @@ class VoteTop100Token implements ShouldQueue
             $driver->quit();
 
             // retry the handle
-            $this->handle();
+            return $this->handle();
         }
 
         Log::debug('Clearing all browser cookies to be sure that we don\'t have any cookies');
@@ -134,6 +134,8 @@ class VoteTop100Token implements ShouldQueue
         Log::debug('Closing the browser');
 
         $driver->quit();
+
+        return 0;
     }
 
     /**
