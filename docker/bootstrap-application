@@ -1,0 +1,36 @@
+#!/bin/sh
+printf "Booting Application...\n";
+
+set -e
+
+role=${CONTAINER_ROLE:-app}
+
+# wait for databases etc to start
+FILE=/wait
+if test -f "$FILE"; then
+    /wait
+fi
+
+chmod -R 777 /usr/share/nginx/html/storage/logs
+rm -f /etc/supervisor/conf.d/queue.conf
+
+# start the application if we are an application
+if [ "$role" = "app" ]; then
+    echo "Starting the application..."
+    exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+elif  [ "$role" = "scheduler" ]; then
+    # sleep until the next full second
+    sleep $(( 60 - $(date +%-S) ))
+
+    while [ true ]
+    do
+      php /usr/share/nginx/html/artisan schedule:run --verbose --no-interaction --quiet &
+      sleep 60
+    done
+elif [ "$role" = "queue" ]; then
+    echo "Running the queue..."
+    php /usr/share/nginx/html/artisan horizon
+else
+    echo "Could not match the container role \"$role\""
+    exit 1
+fi
