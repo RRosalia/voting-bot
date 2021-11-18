@@ -119,7 +119,7 @@ class VoteTop100Token implements ShouldQueue
             sleep(2);
 
             $randomUuid = (string) Str::uuid();
-            $path = 'app/screenshots/'.$randomUuid.'.png';
+            $path = 'app/public/screenshots/'.$randomUuid.'.png';
 
             // create a screenshot of the vote
             $driver->takeScreenshot(storage_path($path));

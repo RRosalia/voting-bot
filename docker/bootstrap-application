@@ -14,6 +14,8 @@ fi
 chmod -R 777 /usr/share/nginx/html/storage/logs
 chmod -R 777 /usr/share/nginx/html/storage
 rm -f /etc/supervisor/conf.d/queue.conf
+php /usr/share/nginx/html/artisan storage:link
+
 
 # start the application if we are an application
 if [ "$role" = "app" ]; then
