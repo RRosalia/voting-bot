@@ -29,7 +29,11 @@ class PrepareVotes extends Command
         VoteTop100Token::class => [
            'min' => 60,
            'max' => 100,
-        ]
+        ],
+        VoteCoinMarketCap::class => [
+            'min' => 10,
+            'max' => 30,
+        ],
     ];
 
     /**
@@ -46,10 +50,6 @@ class PrepareVotes extends Command
      */
     public function handle()
     {
-
-        VoteCoinMarketCap::dispatchSync();
-        exit;
-
         /**
          * @var VoteJob $job
          * @var  $frequency
