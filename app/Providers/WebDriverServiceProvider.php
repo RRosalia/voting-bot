@@ -14,8 +14,11 @@ class WebDriverServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(WebDriver::class, function(){
-
+        $this->app->bind(WebDriver::class, function(){
+            return WebDriver::instantiate(
+                $this->app['config']->get('webdriver.host'),
+                $this->app['config']->get('webdriver.proxy'),
+            );
         });
     }
 

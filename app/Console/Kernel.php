@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('vote:cast:top100')
+         $schedule->command('prepare:votes')
              ->hourly();
 
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
