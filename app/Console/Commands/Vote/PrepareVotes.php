@@ -27,8 +27,8 @@ class PrepareVotes extends Command
      */
     protected array $frequency = [
         VoteCoinMarketCap::class => [
-            'min' => 500,
-            'max' => 1200,
+            'min' => 1200,
+            'max' => 3500,
         ],
         VoteTop100Token::class => [
            'min' => 100,
