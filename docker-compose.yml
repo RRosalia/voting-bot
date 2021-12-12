@@ -25,7 +25,6 @@ services:
         volumes:
             - './:/usr/share/nginx/html:cached'
             - '/dev/null:/bootstrap/cache'
-            - '/dev/null:/vendor'
             - '/dev/null:/node_modules'
             - '/dev/null:/public/dist'
     scheduler:
@@ -54,7 +53,6 @@ services:
         volumes:
             - './:/usr/share/nginx/html:cached'
             - '/dev/null:/bootstrap/cache'
-            - '/dev/null:/vendor'
             - '/dev/null:/node_modules'
             - '/dev/null:/public/dist'
     queue:
@@ -83,7 +81,6 @@ services:
         volumes:
             - './:/usr/share/nginx/html:cached'
             - '/dev/null:/bootstrap/cache'
-            - '/dev/null:/vendor'
             - '/dev/null:/node_modules'
             - '/dev/null:/public/dist'
     chrome:
@@ -92,7 +89,6 @@ services:
         depends_on:
             - selenium-hub
         environment:
-            - SE_NODE_MAX_SESSIONS=5
             - SE_EVENT_BUS_HOST=selenium-hub
             - SE_EVENT_BUS_PUBLISH_PORT=4442
             - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
