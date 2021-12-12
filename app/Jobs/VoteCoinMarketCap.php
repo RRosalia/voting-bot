@@ -74,7 +74,14 @@ class VoteCoinMarketCap extends VoteJob
             $links = WebDriverBy::cssSelector('.enter-done a.cmc-link');
 
             $webDriver->wait(10, 500)->until(function ($driver) use ($links) {
-                return count($driver->findElements($links)) > 0;
+                $foundLinks = $driver->findElements($links);
+                // no search results
+                if(count($foundLinks) === 0) {
+                    return false;
+                }
+                return collect($foundLinks)->first(function(WebDriverElement $element){
+                    return Str::contains($element->getText(), 'Shakita');
+                }) !== null;
             });
 
             $links = $webDriver->findElements($links);
