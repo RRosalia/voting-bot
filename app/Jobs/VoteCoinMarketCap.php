@@ -41,14 +41,11 @@ class VoteCoinMarketCap extends VoteJob
         $shouldSearch = (rand(0, 10) > 3); // 70% we execute search
         $shouldVote = (rand(0, 10) > 3); // 70% of the time we vote
 
-        $shouldSearch = true;
-
         Log::info('Started the for shakita with the following params', [
             'url' => $this->url,
             'should_vote' => $shouldVote,
             'should_search' => $shouldSearch,
         ]);
-
 
         if($shouldSearch === true) {
             $randomPage = $this->searchFrom[array_rand($this->searchFrom)];
