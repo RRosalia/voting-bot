@@ -41,6 +41,8 @@ class VoteCoinMarketCap extends VoteJob
         $shouldSearch = (rand(0, 10) > 3); // 70% we execute search
         $shouldVote = (rand(0, 10) > 3); // 70% of the time we vote
 
+        $shouldSearch = true;
+
         Log::info('Started the for shakita with the following params', [
             'url' => $this->url,
             'should_vote' => $shouldVote,
@@ -67,6 +69,8 @@ class VoteCoinMarketCap extends VoteJob
 
             $inputSelector = $webDriver->findElement(WebDriverBy::cssSelector('.enter-done input'));
             $webDriver->wait(10, 500)->until(WebDriverExpectedCondition::visibilityOf($inputSelector));
+
+            $inputSelector->click();
 
             $letters = rand(4, 9);
             $word = substr('shakita inu', 0, $letters);
@@ -106,6 +110,8 @@ class VoteCoinMarketCap extends VoteJob
                 ]);
                 return false;
             }
+
+            Log::info('Storing the search inside the database');
 
             DB::table('searches')->insert([
                 'type' => get_class(),
