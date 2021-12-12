@@ -19,8 +19,6 @@ php /usr/share/nginx/html/artisan storage:link
 
 # start the application if we are an application
 if [ "$role" = "app" ]; then
-    php /usr/share/nginx/html/artisan migrate --force
-
     echo "Starting the application..."
     exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 elif  [ "$role" = "scheduler" ]; then
