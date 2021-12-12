@@ -6,6 +6,7 @@ use App\Core\WebDriver;
 use Carbon\Carbon;
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverElement;
+use Facebook\WebDriver\WebDriverExpectedCondition;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -54,7 +55,7 @@ class VoteCoinMarketCap extends VoteJob
             ]);
             $webDriver->get($randomPage);
 
-            sleep(rand(0, 3));
+            sleep(rand(0, 2));
 
             $searchBox = WebDriverBy::cssSelector('.cmc-header-mobile svg');
             $searchBox = $webDriver->findElement($searchBox);
@@ -62,7 +63,10 @@ class VoteCoinMarketCap extends VoteJob
             // click on the search box
             $searchBox->click();
 
-            sleep(rand(0, 2));
+            sleep(rand(1, 2));
+
+            $inputSelector = $webDriver->findElement(WebDriverBy::cssSelector('.enter-done input'));
+            $webDriver->wait(10, 500)->until(WebDriverExpectedCondition::visibilityOf($inputSelector));
 
             $letters = rand(4, 9);
             $word = substr('shakita inu', 0, $letters);
