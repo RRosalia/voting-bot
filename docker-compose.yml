@@ -22,11 +22,6 @@ services:
             QUEUE_CONNECTION: redis
             SELENIUM_HOST: 'http://selenium-hub:4444'
         working_dir: /usr/share/nginx/html
-        volumes:
-            - './:/usr/share/nginx/html:cached'
-            - '/dev/null:/bootstrap/cache'
-            - '/dev/null:/node_modules'
-            - '/dev/null:/public/dist'
     scheduler:
         build:
             context: .
@@ -50,11 +45,6 @@ services:
             QUEUE_CONNECTION: redis
             SELENIUM_HOST: 'http://selenium-hub:4444'
         working_dir: /usr/share/nginx/html
-        volumes:
-            - './:/usr/share/nginx/html:cached'
-            - '/dev/null:/bootstrap/cache'
-            - '/dev/null:/node_modules'
-            - '/dev/null:/public/dist'
     queue:
         build:
             context: .
@@ -78,11 +68,6 @@ services:
             QUEUE_CONNECTION: redis
             SELENIUM_HOST: 'http://selenium-hub:4444'
         working_dir: /usr/share/nginx/html
-        volumes:
-            - './:/usr/share/nginx/html:cached'
-            - '/dev/null:/bootstrap/cache'
-            - '/dev/null:/node_modules'
-            - '/dev/null:/public/dist'
     chrome:
         image: 'selenium/node-chrome:4.1.0-prerelease-20211105'
         shm_size: 2gb
