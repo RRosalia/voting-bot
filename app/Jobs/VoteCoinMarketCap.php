@@ -72,6 +72,11 @@ class VoteCoinMarketCap extends VoteJob
 
             // click on shakita inu
             $links = WebDriverBy::cssSelector('.enter-done a.cmc-link');
+
+            $webDriver->wait(10, 500)->until(function ($driver) use ($links) {
+                return count($driver->findElements($links)) > 0;
+            });
+
             $links = $webDriver->findElements($links);
 
             /** @var WebDriverElement $button */
