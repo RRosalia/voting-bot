@@ -10,7 +10,7 @@ services:
             APP_NAME: Voter
             APP_ENV: production
             REDIS_HOST: 95.170.74.103
-            REDIS_PASSWORD: VLtnWwYshd6vjBKs
+            REDIS_PASSWORD: 8gdt2dKYCN4LsZgkffFWbfTxLGWTpXLTErFyN9AHbhyw63pUte3D2Qx2JwKy5vFwrvpCawpqmUcbzA3f4m5cgyAVZzd9UFkcXuCm5yPBZ9weTVBtCmuAHye3yeR8cjCW
             DB_HOST: 95.170.74.103
             DB_DATABASE: voting-bot
             DB_USERNAME: voting-user-app
@@ -39,7 +39,7 @@ services:
             CONTAINER_ROLE: scheduler
             APP_ENV: production
             REDIS_HOST: 95.170.74.103
-            REDIS_PASSWORD: VLtnWwYshd6vjBKs
+            REDIS_PASSWORD: 8gdt2dKYCN4LsZgkffFWbfTxLGWTpXLTErFyN9AHbhyw63pUte3D2Qx2JwKy5vFwrvpCawpqmUcbzA3f4m5cgyAVZzd9UFkcXuCm5yPBZ9weTVBtCmuAHye3yeR8cjCW
             DB_HOST: 95.170.74.103
             DB_DATABASE: voting-bot
             DB_USERNAME: voting-user-app
@@ -68,7 +68,7 @@ services:
             CONTAINER_ROLE: queue
             APP_ENV: production
             REDIS_HOST: 95.170.74.103
-            REDIS_PASSWORD: VLtnWwYshd6vjBKs
+            REDIS_PASSWORD: 8gdt2dKYCN4LsZgkffFWbfTxLGWTpXLTErFyN9AHbhyw63pUte3D2Qx2JwKy5vFwrvpCawpqmUcbzA3f4m5cgyAVZzd9UFkcXuCm5yPBZ9weTVBtCmuAHye3yeR8cjCW
             DB_HOST: 95.170.74.103
             DB_DATABASE: voting-bot
             DB_USERNAME: voting-user-app
