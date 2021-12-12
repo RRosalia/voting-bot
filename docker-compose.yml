@@ -70,7 +70,7 @@ services:
         working_dir: /usr/share/nginx/html
     chrome:
         image: 'selenium/node-chrome:4.1.0-prerelease-20211105'
-        shm_size: 2gb
+        shm_size: 64gb
         depends_on:
             - selenium-hub
         environment:
