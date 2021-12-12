@@ -20,18 +20,84 @@ class VoteCoinMarketCap extends VoteJob
     protected ?string $url = 'https://coinmarketcap.com/currencies/shakita-inu/';
 
     /**
+     * Start the search from one of those random pages
+     *
+     * @var array|string[]
+     */
+    protected array $searchFrom = [
+        'https://coinmarketcap.com/',
+        'https://coinmarketcap.com/new/',
+        'https://coinmarketcap.com/best-cryptos/'
+    ];
+
+    /**
      * @param WebDriver $webDriver
      * @return bool
      */
     public function process(WebDriver $webDriver) : bool
     {
-        Log::info('Browsing the page using the following ip address + browser details', [
+        $shouldSearch = (rand(0, 10) > 3); // 70% we execute search
+        $shouldVote = (rand(0, 10) > 3); // 70% of the time we vote
+
+        Log::info('Started the for shakita with the following params', [
             'url' => $this->url,
+            'should_vote' => $shouldVote,
+            'should_search' => $shouldSearch,
         ]);
 
-        sleep(mt_rand(0, 1));
+        if($shouldSearch === true) {
+            $randomPage = $this->searchFrom[array_rand($this->searchFrom)];
+            Log::info('Starting the search', [
+                'page' => $randomPage
+            ]);
+            $webDriver->get($randomPage);
 
-        $webDriver->get($this->url);
+            sleep(rand(0, 3));
+
+            $searchBox = WebDriverBy::cssSelector('.cmc-header-mobile svg');
+            $searchBox = $webDriver->findElement($searchBox);
+
+            // click on the search box
+            $searchBox->click();
+
+            sleep(rand(0, 2));
+
+            $letters = rand(4, 9);
+            $word = substr('shakita inu', 0, $letters);
+            Log::info('Typing the first letters', compact('letters', 'word'));
+
+            $webDriver->getKeyboard()->sendKeys($word);
+
+            // click on shakita inu
+            $links = WebDriverBy::cssSelector('.enter-done a.cmc-link');
+            $links = $webDriver->findElements($links);
+
+            /** @var WebDriverElement $button */
+            $button = collect($links)->first(function(WebDriverElement $element){
+                return Str::contains($element->getText(), 'Shakita Inu');
+            });
+
+            sleep(rand(1, 3));
+
+            $button->click();
+
+            // now verify thar url is the same
+            if($webDriver->getCurrentURL() !== $this->url) {
+                Log::error('Url is not the shakita url error out', [
+                    'url' => $webDriver->getCurrentURL(),
+                ]);
+                return false;
+            }
+
+        } else {
+            $webDriver->get($this->url);
+        }
+
+        if($shouldVote === false) {
+            return true;
+        }
+
+        sleep(mt_rand(0, 1));
 
         do {
             $selector = WebDriverBy::cssSelector('button');

@@ -85,6 +85,9 @@ abstract class VoteJob implements ShouldQueue
             return true;
         }
 
+        // close the browser
+        $webDriver->closeBrowser();
+
         // release the job back to the queue
         $this->release(now()->addSeconds(15));
 
@@ -130,7 +133,12 @@ abstract class VoteJob implements ShouldQueue
      */
     private function ipHasAlreadyBeenUsed($ip) : bool
     {
-        return $this->getBuilder()->where('ip', $ip)->exists();
+        return $this->getBuilder()
+            ->where(function($builder) use ($ip){
+                $builder->where('ip', $ip);
+                $builder->where('created_at', '>', now()->subDay());
+            })
+            ->exists();
     }
 
     /**
