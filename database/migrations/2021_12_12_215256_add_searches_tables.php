@@ -13,7 +13,7 @@ class AddSearchesTables extends Migration
      */
     public function up()
     {
-        Schema::table('searches', function(Blueprint $table){
+        Schema::create('searches', function(Blueprint $table){
             $table->id();
             $table->string('type')->index();
             $table->ipAddress('ip');

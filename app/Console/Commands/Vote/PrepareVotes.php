@@ -26,10 +26,10 @@ class PrepareVotes extends Command
      * @var array|\int[][]
      */
     protected array $frequency = [
-//        VoteTop100Token::class => [
-//           'min' => 100,
-//           'max' => 400,
-//        ],
+        VoteTop100Token::class => [
+           'min' => 100,
+           'max' => 400,
+        ],
         VoteCoinMarketCap::class => [
             'min' => 500,
             'max' => 1200,
@@ -65,7 +65,6 @@ class PrepareVotes extends Command
             for ($x = 0; $x <= $votesPerHour; $x++) {
                 $delay = Carbon::now()->addMinutes(rand(0, 60));
                 $job::dispatch()->delay($delay);
-                exit;
             }
         }
 

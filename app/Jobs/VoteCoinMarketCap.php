@@ -46,6 +46,7 @@ class VoteCoinMarketCap extends VoteJob
             'should_search' => $shouldSearch,
         ]);
 
+
         if($shouldSearch === true) {
             $randomPage = $this->searchFrom[array_rand($this->searchFrom)];
             Log::info('Starting the search', [
@@ -94,6 +95,8 @@ class VoteCoinMarketCap extends VoteJob
                 'type' => get_class(),
                 'ip' => $webDriver->getIp(),
                 'user_agent' => $webDriver->getUserAgent(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
         } else {
