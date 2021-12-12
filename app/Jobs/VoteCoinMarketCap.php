@@ -6,6 +6,7 @@ use App\Core\WebDriver;
 use Carbon\Carbon;
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverElement;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -88,6 +89,12 @@ class VoteCoinMarketCap extends VoteJob
                 ]);
                 return false;
             }
+
+            DB::table('searches')->insert([
+                'type' => get_class(),
+                'ip' => $webDriver->getIp(),
+                'user_agent' => $webDriver->getUserAgent(),
+            ]);
 
         } else {
             $webDriver->get($this->url);
