@@ -80,8 +80,8 @@ class VoteCoinMarketCap extends VoteJob
             $links = $webDriver->findElements($links);
 
             /** @var WebDriverElement $button */
-            $button = collect($links)->first(function(WebDriverElement $element){
-                return Str::contains($element->getText(), 'Shakita Inu');
+            $button = collect($links)->firstOrFail(function(WebDriverElement $element){
+                return Str::contains($element->getText(), 'Shakita');
             });
 
             sleep(rand(1, 3));
