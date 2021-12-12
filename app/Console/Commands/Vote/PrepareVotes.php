@@ -31,8 +31,8 @@ class PrepareVotes extends Command
            'max' => 100,
         ],
         VoteCoinMarketCap::class => [
-            'min' => 10,
-            'max' => 30,
+            'min' => 500,
+            'max' => 1200,
         ],
     ];
 
