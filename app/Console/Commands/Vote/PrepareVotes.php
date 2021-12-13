@@ -31,8 +31,8 @@ class PrepareVotes extends Command
             'max' => 3500,
         ],
         VoteTop100Token::class => [
-           'min' => 100,
-           'max' => 400,
+           'min' => 20,
+           'max' => 50,
         ],
     ];
 
