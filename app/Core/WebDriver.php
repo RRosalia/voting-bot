@@ -38,8 +38,10 @@ class WebDriver extends RemoteWebDriver
         $desiredCapabilities = DesiredCapabilities::chrome();
         $options = new ChromeOptions();
         $options->addArguments([
-            '--user-agent=' . $userAgent
+            '--user-agent=' . $userAgent,
+            '--headless'
         ]);
+
 
         if($proxy) {
             $desiredCapabilities->setCapability(
