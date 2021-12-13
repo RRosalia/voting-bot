@@ -39,7 +39,9 @@ class WebDriver extends RemoteWebDriver
         $options = new ChromeOptions();
         $options->addArguments([
             '--user-agent=' . $userAgent,
-            '--headless'
+            '--headless',
+            '--ignore-certificate-errors',
+            "--ignore-ssl-errors=yes",
         ]);
 
         if($proxy) {
@@ -48,7 +50,7 @@ class WebDriver extends RemoteWebDriver
                     'proxyType' => 'manual',
                     'httpProxy' => "$proxy",
                     'sslProxy' => "$proxy",
-                ]
+                ],
             );
         }
 
