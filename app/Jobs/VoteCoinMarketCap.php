@@ -35,14 +35,13 @@ class VoteCoinMarketCap extends VoteJob
     /**
      * @param WebDriver $webDriver
      * @return bool
+     * @throws \Facebook\WebDriver\Exception\NoSuchElementException
+     * @throws \Facebook\WebDriver\Exception\TimeoutException
      */
     public function process(WebDriver $webDriver) : bool
     {
         $shouldSearch = (rand(0, 10) > 3); // 70% we execute search
         $shouldVote = (rand(0, 10) > 3); // 70% of the time we vote
-
-        $shouldSearch = true;
-        $shouldVote = false;
 
         Log::info('Started CoinMarketCap Processor', [
             'url' => $this->url,
