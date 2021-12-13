@@ -39,7 +39,6 @@ class WebDriver extends RemoteWebDriver
         $options = new ChromeOptions();
         $options->addArguments([
             '--user-agent=' . $userAgent,
-            '--headless'
         ]);
 
         if($proxy) {
