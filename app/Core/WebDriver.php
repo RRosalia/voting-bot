@@ -42,7 +42,6 @@ class WebDriver extends RemoteWebDriver
             '--headless'
         ]);
 
-
         if($proxy) {
             $desiredCapabilities->setCapability(
                 WebDriverCapabilityType::PROXY, [
