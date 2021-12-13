@@ -41,7 +41,10 @@ class VoteCoinMarketCap extends VoteJob
         $shouldSearch = (rand(0, 10) > 3); // 70% we execute search
         $shouldVote = (rand(0, 10) > 3); // 70% of the time we vote
 
-        Log::info('Started the for shakita with the following params', [
+        $shouldSearch = true;
+        $shouldVote = false;
+
+        Log::info('Started CoinMarketCap Processor', [
             'url' => $this->url,
             'should_vote' => $shouldVote,
             'should_search' => $shouldSearch,
@@ -64,10 +67,11 @@ class VoteCoinMarketCap extends VoteJob
 
             sleep(rand(1, 2));
 
-            $inputSelector = $webDriver->findElement(WebDriverBy::cssSelector('.enter-done input'));
-            $webDriver->wait(10, 500)->until(WebDriverExpectedCondition::visibilityOf($inputSelector));
+            $webDriver->wait(10, 200)->until(function(WebDriver $driver){
+                return !is_null($driver->findElement(WebDriverBy::cssSelector('.enter-done input')));
+            });
 
-            $inputSelector->click();
+            $webDriver->findElement(WebDriverBy::cssSelector('.enter-done input'))->click();
 
             $letters = rand(4, 9);
             $word = substr('shakita inu', 0, $letters);

@@ -38,6 +38,13 @@ abstract class VoteJob implements ShouldQueue
     protected ?string $url = null;
 
     /**
+     * The number of times the job may be attempted.
+     *
+     * @var int
+     */
+    public $tries = 10;
+
+    /**
      * @param WebDriver $webDriver
      * @return bool
      * @throws IpHasAlreadyBeenUsedException
@@ -158,4 +165,5 @@ abstract class VoteJob implements ShouldQueue
             $this->release(now()->addSeconds(15));
         }
     }
+
 }
