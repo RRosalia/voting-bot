@@ -25,9 +25,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command('prepare:votes')
-             ->hourly();
+             ->hourly()->onOneServer();
 
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
+        $schedule->command('queue:retry-all')->everyFiveMinutes()->onOneServer();
     }
 
     /**
